@@ -27,12 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocListener<ProductListBloc, ProductListState>(
       listener: (context, state) {
         if (state is Success) {
-          print(state.productListModel);
           productListModel = state.productListModel;
           setState(() {});
         }
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: BlocBuilder<ProductListBloc, ProductListState>(
             builder: (context, state) {

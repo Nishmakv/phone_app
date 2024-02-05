@@ -29,7 +29,7 @@ class ProductList {
     );
 
     Map<String, dynamic> toJson() => {
-        "products": List<dynamic>.from(products!.map((x) => x.toJson())),
+        "products": List<dynamic>.from(products.map((x) => x.toJson())),
         "total": total,
         "skip": skip,
         "limit": limit,
@@ -37,30 +37,30 @@ class ProductList {
 }
 
 class Product {
-    int? id;
-    String? title;
+    int id;
+    String title;
     String? description;
     int? price;
     double? discountPercentage;
     double? rating;
     int? stock;
     String? brand;
-    Category? category;
+    Category category;
     String? thumbnail;
-    List<String>? images;
+    List<String> images;
 
     Product({
-         this.id,
-         this.title,
+        required this.id,
+        required this.title,
          this.description,
          this.price,
          this.discountPercentage,
          this.rating,
          this.stock,
          this.brand,
-         this.category,
+         required this.category,
          this.thumbnail,
-         this.images,
+        required this.images,
     });
 
     factory Product.fromJson(Map<String, dynamic> json) => Product(
@@ -88,7 +88,7 @@ class Product {
         "brand": brand,
         "category": categoryValues.reverse[category],
         "thumbnail": thumbnail,
-        "images": List<dynamic>.from(images!.map((x) => x)),
+        "images": List<dynamic>.from(images.map((x) => x)),
     };
 }
 

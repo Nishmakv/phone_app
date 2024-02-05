@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:phone_app/models/product_model.dart';
+import 'package:phone_app/screens/product_details.dart';
 
+// ignore: must_be_immutable
 class ProductGridWidget extends StatefulWidget {
   List<Product> products = [];
   ProductGridWidget({Key? key, required this.products}) : super(key: key);
@@ -35,7 +37,19 @@ class _ProductGridWidgetState extends State<ProductGridWidget> {
                   final data = widget.products[index];
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.network(data.images![0], fit: BoxFit.fill),
+                    child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                   return ProductDetailScreen(
+                                  id: widget.products[index].id);
+                                },
+                              ));
+                        },
+                        child:
+                            Image.network(data.images![0], fit: BoxFit.fill)),
                   );
                 },
               ),

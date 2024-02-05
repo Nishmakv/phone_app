@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:phone_app/bloc/product_list_bloc.dart';
+import 'package:phone_app/product_detail/bloc/product_detail_bloc.dart';
 import 'package:phone_app/screens/home.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(BlocProvider(
-    create: (context) => ProductListBloc(),
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (context) => ProductListBloc(),
+      ),
+      BlocProvider(
+        create: (context) => ProductDetailBloc(),
+      ),
+    ],
     child: const MyApp(),
   ));
 }
