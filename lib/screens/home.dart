@@ -42,7 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        ProductGridWidget(products: productListModel!.products),
+                        ProductGridWidget(
+                          products: productListModel!.products,
+                          onScrollControllerCreated: (a) {},
+                        ),
                       ],
                     ),
                   ),
