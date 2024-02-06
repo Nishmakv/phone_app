@@ -46,7 +46,7 @@ class Product {
     int? stock;
     String? brand;
     Category category;
-    String? thumbnail;
+    String thumbnail;
     List<String> images;
 
     Product({
@@ -59,7 +59,7 @@ class Product {
          this.stock,
          this.brand,
          required this.category,
-         this.thumbnail,
+         required this.thumbnail,
         required this.images,
     });
 

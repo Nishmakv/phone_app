@@ -7,11 +7,4 @@ class ProductListState with _$ProductListState {
   const factory ProductListState.success(ProductList productListModel) =
       Success;
   const factory ProductListState.failure() = Failure;
-
-// @Implements(DetailsLoading)
-  //   const factory ProductListState.detailsLoading() = DetailsLoading;
-  // const factory ProductListState.detailsSuccess() = DetailsSuccess;
-  // const factory ProductListState.detailsFailure() = DetailsFailure;
-
-
 }

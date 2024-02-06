@@ -27,10 +27,10 @@ class _ProductGridWidgetState extends State<ProductGridWidget> {
               ),
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 1,
+                    childAspectRatio: 0.80,
                     crossAxisCount: 2, // Number of columns
-                    crossAxisSpacing: 5, // Spacing between columns
-                    mainAxisSpacing: 10 // Spacing between rows
+                    crossAxisSpacing: 50, // Spacing between columns
+                    mainAxisSpacing: 1 // Spacing between rows
                     ),
                 itemCount: widget.products.length,
                 itemBuilder: (context, index) {
@@ -40,16 +40,34 @@ class _ProductGridWidgetState extends State<ProductGridWidget> {
                     child: GestureDetector(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                   return ProductDetailScreen(
-                                  id: widget.products[index].id);
-                                },
-                              ));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetailScreen(
+                                    id: widget.products[index].id);
+                              },
+                            ),
+                          );
                         },
-                        child:
-                            Image.network(data.images![0], fit: BoxFit.fill)),
+                        child: Column(
+                          children: [
+                            Image.network(data.thumbnail, fit: BoxFit.fill),
+                            Text(
+                              data.title,
+                              style: TextStyle(
+                                fontSize: h / 50,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              '₹${data.price.toString()}',
+                              style: TextStyle(
+                                fontSize: h / 40,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        )),
                   );
                 },
               ),

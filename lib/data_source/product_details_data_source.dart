@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:phone_app/models/product_details_by_id.dart';
 import 'package:phone_app/models/product_model.dart';
 
 class ProductetailsDataSource {
