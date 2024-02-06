@@ -11,14 +11,14 @@ class ProductAddBloc extends Bloc<ProductAddEvent, ProductAddState> {
   ProductAddBloc() : super(_Initial()) {
     on<ProductAddEvent>((event, emit) async {
       await event.when(
-          addProduct: (title, category, brand, description, price) async {
+          addProduct: (title, description, brand, category, price) async {
         emit(ProductAddState.loading());
         try {
           final dataResponse = await addProductDataSource.addProduct(
               title: title,
               description: description,
-              category: category,
               brand: brand,
+              category: category,
               price: price);
           if (dataResponse != null) {
             emit(ProductAddState.success());
@@ -26,7 +26,7 @@ class ProductAddBloc extends Bloc<ProductAddEvent, ProductAddState> {
             emit(ProductAddState.failure());
           }
         } catch (e) {
-           emit(ProductAddState.failure());
+          emit(ProductAddState.failure());
         }
       });
     });

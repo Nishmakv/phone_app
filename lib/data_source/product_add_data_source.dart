@@ -7,8 +7,8 @@ class AddProductDataSource {
   Future addProduct({
     required String? title,
     required String? description,
-    required String? category,
     required String? brand,
+    required String? category,
     required int price,
   }) async {
     Product addProduct;
@@ -18,8 +18,8 @@ class AddProductDataSource {
       data: {
         "title": title,
         "description": description,
-        "category": category,
         "brand": brand,
+        "category": category,
         "price": price,
       },
       options: Options(
