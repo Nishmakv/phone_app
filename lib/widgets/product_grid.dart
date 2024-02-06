@@ -21,56 +21,54 @@ class _ProductGridWidgetState extends State<ProductGridWidget> {
       child: Column(
         children: [
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.80,
-                    crossAxisCount: 2, // Number of columns
-                    crossAxisSpacing: 50, // Spacing between columns
-                    mainAxisSpacing: 1 // Spacing between rows
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  // childAspectRatio: 0.80,
+                  crossAxisCount: 2, // Number of columns
+                  crossAxisSpacing: 5, // Spacing between columns
+                  mainAxisSpacing: 1 // Spacing between rows
+                  ),
+              itemCount: widget.products.length,
+              itemBuilder: (context, index) {
+                final data = widget.products[index];
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ProductDetailScreen(
+                                id: widget.products[index].id);
+                          },
+                        ),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 100,
+                          child: Image.network(data.thumbnail,
+                              fit: BoxFit.contain),
+                        ),
+                        Text(
+                          data.title,
+                          style: TextStyle(
+                            fontSize: h / 50,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          '₹${data.price.toString()}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: h / 45),
+                        ),
+                      ],
                     ),
-                itemCount: widget.products.length,
-                itemBuilder: (context, index) {
-                  final data = widget.products[index];
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ProductDetailScreen(
-                                    id: widget.products[index].id);
-                              },
-                            ),
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            Image.network(data.thumbnail, fit: BoxFit.fill),
-                            Text(
-                              data.title,
-                              style: TextStyle(
-                                fontSize: h / 50,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Text(
-                              '₹${data.price.toString()}',
-                              style: TextStyle(
-                                fontSize: h / 40,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        )),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ),
         ],

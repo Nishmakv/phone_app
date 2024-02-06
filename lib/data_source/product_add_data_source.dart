@@ -3,25 +3,24 @@ import 'package:phone_app/models/product_model.dart';
 
 class AddProductDataSource {
   Dio client = Dio();
-  
-  Future<Product> addProduct({
+
+  Future addProduct({
     required String? title,
     required String? description,
-    required String?category,
-    required String?brand,
+    required String? category,
+    required String? brand,
     required int price,
-
   }) async {
     Product addProduct;
-   
+
     final response = await client.post(
-    'https://dummyjson.com/products/add',
+      'https://dummyjson.com/products/add',
       data: {
-       "title":title,
-       "description":description,
-       "category":category,
-       "brand":brand,
-       "price":price,
+        "title": title,
+        "description": description,
+        "category": category,
+        "brand": brand,
+        "price": price,
       },
       options: Options(
         headers: {
@@ -30,11 +29,14 @@ class AddProductDataSource {
         },
       ),
     );
-    print(response.data['token']);
 
-    addProduct = Product.fromJson(response.data);
-    
-   
-    return addProduct;
+    print(response.data);
+    print(';;;;');
+
+    if (response.data['id'] != null) {
+      return ['response'];
+    } else {
+      return [];
+    }
   }
 }
